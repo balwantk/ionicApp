@@ -1,0 +1,29 @@
+<!--
+  Generated template for the OrdersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Placed Orders</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<h2>My Orders</h2>
+<ion-list inset>
+	<ion-item *ngFor = "let order of placedOrders | async">
+	<p><b>{{ order.time }}</b></p>
+	<ion-list inset>
+		<ion-item *ngFor = "let item of order.data">
+			<b>{{ item.name }}</b>	Rs.{{ item.price }}
+		</ion-item>
+	</ion-list>
+	<h3> Total: Rs. {{ order.total }} </h3>
+	</ion-item>
+</ion-list>
+</ion-content>

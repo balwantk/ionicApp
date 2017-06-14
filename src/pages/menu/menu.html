@@ -1,0 +1,49 @@
+
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Menu</ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="signOutFromFacebook()">Logout</button>
+    <button ion-button menuToggle (click)="openMenu()" icon-only><ion-icon name="menu"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+<ion-menu [content]="mycontent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Navigate</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+    <ion-list> 
+      <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">
+      {{ page.title }}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+<ion-list inset>
+	<ion-item *ngFor = "let item of menuItems | async">
+	<b>{{ item.name }}</b>
+		<ion-thumbnail item-left ion-button clear (click)="whenClicked(item)">
+			<img [src]= item.image >
+		</ion-thumbnail>
+		<button ion-button (click)="whenClicked(item)" color = "dark" outline item-end>Rs. {{ item.price }}</button>
+		<p>{{ item.details }}</p>
+	</ion-item>
+</ion-list>
+<ion-item>
+   <button item-right ion-button color="secondary" outline (click)="goToCheckout()">
+	   Checkout 
+	   <ion-icon name="arrow-round-forward" ></ion-icon>
+   </button>
+      <button item-right ion-button outline (click)="addMenuItem()">
+     Add Sandwich to menu 
+   </button>
+</ion-item>
+</ion-content>
